@@ -1,31 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { getPhoto } from './../../api';
 
 // components
-import PhotoPreview from './../PhotoPreview/PhotoPreview';
-
-// types
-import { IPhoto } from './../../types/Photo';
+import PhotoOfTheDay from './../PhotoOfTheDay/PhotoOfTheDay';
+import PhotoFinder from './../PhotoFinder/PhotoFinder';
 
 export default function App() {
-  const [photo, setPhoto] = useState<IPhoto>();
-
-  useEffect(() => {
-    (async () => {
-      setPhoto(await getPhoto());
-    })();
-  }, []);
-
-  const renderPhotoPreview = () => {
-    if (photo?.media_type === 'image') {
-      return <PhotoPreview photo={photo} />;
-    } else {
-      return <p>Sorry... there's no photo for today.</p>;
-    }
-  };
-
   return (
     <Router>
       <div className="app">
@@ -34,6 +15,11 @@ export default function App() {
             <li className="nav__item">
               <Link className="nav__link" to="/">
                 Strona główna
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link className="nav__link" to="/zdjecie-dnia">
+                Zdjęcie dnia
               </Link>
             </li>
             <li className="nav__item">
@@ -48,7 +34,12 @@ export default function App() {
           <Route path="/zapisane">
             <Favorite />
           </Route>
-          <Route path="/">{renderPhotoPreview()}</Route>
+          <Route path="/zdjecie-dnia">
+            <PhotoOfTheDay />
+          </Route>
+          <Route path="/">
+            <PhotoFinder />
+          </Route>
         </Switch>
       </div>
     </Router>

@@ -2,6 +2,14 @@
   margin-top: 50px;
   width: 60%;
 
+  @media (max-width: 1023px) {
+    width: 80%;
+  }
+
+  @media (max-width: 767px) {
+    width: 90%;
+  }
+
   &__wrapper {
     position: relative;
   }
