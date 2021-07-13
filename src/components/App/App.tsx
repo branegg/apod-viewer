@@ -19,23 +19,27 @@ export default function App() {
   }, []);
 
   const renderPhotoPreview = () => {
-    if (photo?.media_type === "image") {
-      return <PhotoPreview photo={photo} />
+    if (photo?.media_type === 'image') {
+      return <PhotoPreview photo={photo} />;
     } else {
-      return <p>Sorry... there's no photo for today.</p>
+      return <p>Sorry... there's no photo for today.</p>;
     }
-  }
+  };
 
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
+      <div className="app">
+        <nav className="nav">
+          <ul className="nav__list">
+            <li className="nav__item">
+              <Link className="nav__link" to="/">
+                Strona główna
+              </Link>
             </li>
-            <li>
-              <Link to="/zapisane">Zapisane</Link>
+            <li className="nav__item">
+              <Link className="nav__link" to="/zapisane">
+                Zapisane
+              </Link>
             </li>
           </ul>
         </nav>
