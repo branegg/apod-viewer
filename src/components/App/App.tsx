@@ -3,12 +3,20 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { getPhoto } from './../../api';
 
+// components
+import PhotoPreview from './../PhotoPreview/PhotoPreview';
+
+// types
+import { IPhoto } from './../../types/Photo';
+
 export default function App() {
-  const [photo, setPhoto] = useState({});
+  const [photo, setPhoto] = useState<IPhoto>();
 
   useEffect(() => {
-    getPhoto();
-  });
+    (async () => {
+      setPhoto(await getPhoto());
+    })();
+  }, []);
 
   return (
     <Router>
@@ -28,15 +36,11 @@ export default function App() {
           <Route path="/zapisane">
             <Favorite />
           </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/">{photo && <PhotoPreview photo={photo} />}</Route>
         </Switch>
       </div>
     </Router>
   );
 }
-
-const Home = () => <h2>Home</h2>;
 
 const Favorite = () => <h2>Zapisane</h2>;

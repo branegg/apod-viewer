@@ -9,7 +9,7 @@ const baseParams = { api_key: process.env.REACT_APP_NASA_API_KEY };
 export async function getPhoto() {
   try {
     const response = await api.get(`/planetary/apod?api_key=${baseParams.api_key}`);
-    console.log(response);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
