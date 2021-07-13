@@ -8,6 +8,26 @@ const api = axios.create({
 
 const baseParams = { api_key: process.env.REACT_APP_NASA_API_KEY };
 
+export async function getPhotoOfTheDay(): Promise<IPhoto> {
+  try {
+    const response = await api.get(`/planetary/apod?api_key=${baseParams.api_key}`);
+    const photo = response.data;
+    console.log(photo);
+    return photo;
+  } catch (error) {
+    let res = 'Sorry, something went wrong';
+
+    console.error(error.message);
+
+    switch (error.response.status) {
+      case '400': {
+        res = "Sorry, there's no photo for today";
+      }
+    }
+    throw new Error(res);
+  }
+}
+
 export async function getPhoto(): Promise<IPhoto> {
   try {
     const response = await api.get(`/planetary/apod?api_key=${baseParams.api_key}&count=1`);
