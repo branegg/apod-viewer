@@ -1,4 +1,41 @@
 .photo-preview {
-  width: 800px;
-  height: 600px;
+  margin-top: 50px;
+  width: 60%;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  &__button {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.3;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  &__save {
+    width: 30px;
+    margin-right: 5px;
+  }
 }
