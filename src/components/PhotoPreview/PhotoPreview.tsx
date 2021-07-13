@@ -3,5 +3,8 @@ import './PhotoPreview.scss';
 import { IPhoto } from './../../types/Photo';
 
 export default function PhotoPreview(props: { photo: IPhoto }) {
-  return <img src={props.photo.url} alt="" />;
+  const { photo } = props;
+  console.log(photo);
+
+  return <img className="photo-preview" src={photo.url} alt="" />;
 }

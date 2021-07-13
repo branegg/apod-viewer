@@ -18,6 +18,14 @@ export default function App() {
     })();
   }, []);
 
+  const renderPhotoPreview = () => {
+    if (photo?.media_type === "image") {
+      return <PhotoPreview photo={photo} />
+    } else {
+      return <p>Sorry... there's no photo for today.</p>
+    }
+  }
+
   return (
     <Router>
       <div>
@@ -36,7 +44,7 @@ export default function App() {
           <Route path="/zapisane">
             <Favorite />
           </Route>
-          <Route path="/">{photo && <PhotoPreview photo={photo} />}</Route>
+          <Route path="/">{renderPhotoPreview()}</Route>
         </Switch>
       </div>
     </Router>
